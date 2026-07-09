@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Terra & Thread</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header>
+    <div class="profile">
+      <div class="avatar">T&amp;T</div>
+      <div class="shop-name">
+        <h1>Terra &amp; Thread</h1>
+        <p>small-batch home goods, for your good</p>
+        <svg class="squiggle" viewBox="0 0 46 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 4C6 1 11 1 16 4C21 7 26 7 31 4C36 1 41 1 45 4" stroke="#C69A5B" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="view-toggle" role="group" aria-label="Switch view">
+      <button id="gridBtn" class="active" aria-label="Grid view" aria-pressed="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+        </svg>
+      </button>
+      <button id="listBtn" aria-label="List view" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="grid">
+	<a href="https://docs.google.com/spreadsheets/d/1pJI_WApbZI4SojDxr1ugk8e8pwAm0P7uMat-x8fwpjo/edit?usp=sharing" class="after:absolute after:inset-0" style="display:contents">
+    <article class="card">
+      <div class="card-img" style="background-image:url('img/Tokopedia-Clay-Style.webp')"><span class="tag">$28</span></div>
+      <div class="card-info"><h3>Stoneware Mug</h3><p>Hand-thrown, matte glaze</p></div>
+    </article>
+	</a>
+    <article class="card">
+      <div class="card-img" style="background-image:url('https://picsum.photos/seed/linen-set/500/500')"><span class="tag">$34</span></div>
+      <div class="card-info"><h3>Linen Napkin Set</h3><p>Set of four, stonewashed</p></div>
+    </article>
+    <article class="card">
+      <div class="card-img" style="background-image:url('https://picsum.photos/seed/basket-weave/500/500')"><span class="tag">$46</span></div>
+      <div class="card-info"><h3>Woven Market Basket</h3><p>Seagrass, hand-braided</p></div>
+    </article>
+    <article class="card">
+      <div class="card-img" style="background-image:url('https://picsum.photos/seed/olive-board/500/500')"><span class="tag">$52</span></div>
+      <div class="card-info"><h3>Olive Wood Board</h3><p>Single-piece, food-safe oil</p></div>
+    </article>
+    <article class="card">
+      <div class="card-img" style="background-image:url('https://picsum.photos/seed/vase-ceramic/500/500')"><span class="tag">$38</span></div>
+      <div class="card-info"><h3>Ceramic Vase</h3><p>Reactive glaze, one of a kind</p></div>
+    </article>
+    <article class="card">
+      <div class="card-img" style="background-image:url('https://picsum.photos/seed/wool-throw/500/500')"><span class="tag">$64</span></div>
+      <div class="card-info"><h3>Wool Throw</h3><p>Undyed, chunky knit</p></div>
+    </article>
+  </main>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
