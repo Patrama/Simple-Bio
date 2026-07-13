@@ -1,0 +1,40 @@
+.no-scrollbar::-webkit-scrollbar{ display:none; }
+.no-scrollbar{ -ms-overflow-style:none; scrollbar-width:none; }
+
+/* ---- Soft, low-contrast palettes for each theme ---- */
+:root{
+  --bg: #FAF9F5;
+  --surface: #FFFFFF;
+  --surface-alt: #F1EFE7;
+  --border: #E6E2D6;
+  --text-primary: #322F29;
+  --text-secondary: #8C8677;
+  --accent: #7FB2A4;          /* soft sage-teal */
+  --accent-soft: rgba(127,178,164,0.16);
+  --accent-contrast: #24463D; /* readable ink on the soft accent */
+  --badge-text: #4E8A79;
+  --danger: #C4795F;
+  --danger-soft: rgba(196,121,95,0.12);
+}
+
+html.dark{
+  --bg: #14181B;
+  --surface: #1B2124;
+  --surface-alt: #232A2E;
+  --border: #2C343A;
+  --text-primary: #E9E6DD;
+  --text-secondary: #8D9499;
+  --accent: #6FB6A2;
+  --accent-soft: rgba(111,182,162,0.16);
+  --accent-contrast: #0E1614;
+  --badge-text: #93D2BD;
+  --danger: #E0917C;
+  --danger-soft: rgba(224,145,124,0.12);
+}
+
+html, body{
+  background: var(--bg);
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+* { transition: background-color .2s ease, color .2s ease, border-color .2s ease; }
