@@ -85,7 +85,7 @@ function renderCategoryTabs(products) {
 
   const tabsContainer = document.getElementById('categoryTabs');
   tabsContainer.innerHTML = categories.map(cat => {
-    const label = cat === 'all' ? 'All Finds 🌐' : cat.replace(/\b\w/g, c => c.toUpperCase());
+    const label = cat === 'all' ? 'All Items' : cat.replace(/\b\w/g, c => c.toUpperCase());
     const isActive = cat === 'all';
     return `<button data-category="${cat}" class="cat-btn snap-start shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
       isActive
