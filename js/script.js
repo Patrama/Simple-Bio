@@ -26,9 +26,33 @@ const products = [
 ];
 
 const priceFormatter = new Intl.NumberFormat("id-ID");
+const page = document.querySelector(".page");
 
 function formatRupiah(value) {
   return `Rp ${priceFormatter.format(value)}`;
+}
+
+function fitToViewport() {
+  if (!page) {
+    return;
+  }
+
+  page.style.setProperty("--page-scale", "1");
+
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+  const naturalWidth = page.scrollWidth;
+  const naturalHeight = page.scrollHeight;
+
+  if (!naturalWidth || !naturalHeight) {
+    return;
+  }
+
+  const widthRatio = viewportWidth / naturalWidth;
+  const heightRatio = viewportHeight / naturalHeight;
+  const targetScale = Math.min(1, widthRatio, heightRatio);
+
+  page.style.setProperty("--page-scale", String(targetScale));
 }
 
 function renderProducts(items) {
@@ -90,3 +114,6 @@ function renderProducts(items) {
 }
 
 renderProducts(products);
+fitToViewport();
+
+window.addEventListener("resize", fitToViewport, { passive: true });
