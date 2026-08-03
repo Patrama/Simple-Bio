@@ -4,10 +4,10 @@ const products = [
   {
     title: "Tokopedia",
     soldLabel: "Plus +",
-    Status: "10M",
+    status: "10M",
     duration: "30 Hari",
-    // oldPrice: FullPrice,
-    // newPrice: 9500,
+    // oldPrice: undefined, // no discount shown
+    newPrice: undefined, // price hidden (per prior layout)
     stock: 1,
     link: "page/tokopedia.html",
     image: "img/Tokopedia.webp",
@@ -16,7 +16,7 @@ const products = [
   {
     title: "Kiro Pro+ 20M Tokens",
     soldLabel: "2 TERJUAL",
-    token: "20M",
+    status: "20M",
     duration: "1 Hari",
     oldPrice: 18000,
     newPrice: 16000,
@@ -35,39 +35,49 @@ function formatRupiah(value) {
 
 function renderProducts(items) {
   const grid = document.getElementById("productGrid");
-  if (!grid) {
-    return;
-  }
+  if (!grid) return;
 
   const fragment = document.createDocumentFragment();
 
   items.forEach((item) => {
     const card = document.createElement("article");
-    card.className = "product-card frame";
+    card.className = "product-card";
 
-    const stockLabel = item.stock > 0 ? `${item.stock}` : "Habis";
-    const buttonText = item.stock > 0 ? "BELI SEKARANG" : "STOK HABIS";
-    const stockState = item.stock > 0 ? "" : "disabled";
+    const stockAvailable = item.stock > 0;
+    const buyHtml = stockAvailable
+      ? `<a href="${item.link}" class="buy-btn">BELI SEKARANG</a>`
+      : `<button type="button" class="buy-btn" disabled aria-disabled="true">STOK HABIS</button>`;
+
+    const priceHtml = item.newPrice
+      ? `
+          <div class="price-row">
+            ${item.oldPrice ? `<span class="old-price">${formatRupiah(item.oldPrice)}</span>` : ""}
+            <span class="new-price">${formatRupiah(item.newPrice)}</span>
+          </div>`
+      : "";
 
     card.innerHTML = `
       <div class="product-head">
         <h2 class="product-title">${item.title}</h2>
         <span class="sold-badge">${item.soldLabel}</span>
       </div>
-
       <div class="product-body">
         <div class="meta-col">
-          <div class="meta-row">
-            <span class="meta-label">Durasi</span>
-            <span class="meta-value">${item.duration}</span>
-          </div>
+          <span class="meta-label">Durasi</span>
+          <span class="meta-value">${item.duration}</span>
         </div>
         <div class="brand-logo-container">
-          <img src="${item.image}" class="brand-logo" loading="lazy" decoding="async" alt="${item.sourceLabel} logo">
+          <img
+            src="${item.image}"
+            class="brand-logo"
+            loading="lazy"
+            decoding="async"
+            alt="${item.sourceLabel} logo"
+          />
         </div>
       </div>
-
-      <button type="button" class="buy-btn" ${stockState}>${buttonText}</button>
+      ${priceHtml}
+      ${buyHtml}
     `;
 
     fragment.appendChild(card);
