@@ -10,7 +10,7 @@ const products = [
     // newPrice: 9500,
     stock: 1,
     link: "page/tokopedia.html",
-    image: "img/Tokopedia-Clay-Style.webp",
+    image: "img/Tokopedia.webp",
     sourceLabel: "Tokopedia",
   },
   {
@@ -22,7 +22,7 @@ const products = [
     newPrice: 16000,
     stock: 0,
     link: "page/shopee.html",
-    image: "img/Shopee-Clay-Style.webp",
+    image: "img/Shopee.webp",
     sourceLabel: "Shopee",
   },
 ];
@@ -55,15 +55,17 @@ function renderProducts(items) {
         <span class="sold-badge">${item.soldLabel}</span>
       </div>
 
-        <div class="meta-row">
-          <span class="meta-label">Durasi</span>
-          <span class="meta-value">${item.duration}</span>
+      <div class="product-body">
+        <div class="meta-col">
+          <div class="meta-row">
+            <span class="meta-label">Durasi</span>
+            <span class="meta-value">${item.duration}</span>
+          </div>
         </div>
-
-      <a href="${item.link}" class="thumb-link" aria-label="Open ${item.sourceLabel} page">
-        <img src="${item.image}" width="46" height="46" loading="lazy" decoding="async" alt="${item.sourceLabel} thumbnail">
-        <span>${item.sourceLabel}</span>
-      </a>
+        <div class="brand-logo-container">
+          <img src="${item.image}" class="brand-logo" loading="lazy" decoding="async" alt="${item.sourceLabel} logo">
+        </div>
+      </div>
 
       <button type="button" class="buy-btn" ${stockState}>${buttonText}</button>
     `;
