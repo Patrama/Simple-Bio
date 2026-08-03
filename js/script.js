@@ -51,27 +51,29 @@ function renderProducts(items) {
       : "";
 
     card.innerHTML = `
-      <div class="product-head">
-        <h2 class="product-title">${item.title}</h2>
-        <span class="sold-badge">${item.soldLabel}</span>
-      </div>
-      <div class="product-body">
-        <div class="meta-col">
-          <span class="meta-label">Durasi</span>
-          <span class="meta-value">${item.duration}</span>
+      <div class="card-content">
+        <div class="title-group">
+          <h2 class="product-title">${item.title}</h2>
+          <span class="sold-badge">${item.soldLabel}</span>
         </div>
-        <div class="brand-logo-container">
-          <img
-            src="${item.image}"
-            class="brand-logo"
-            loading="lazy"
-            decoding="async"
-            alt="${item.sourceLabel} logo"
-          />
+        <div class="product-body">
+          <div class="meta-col">
+            <span class="meta-label">Durasi</span>
+            <span class="meta-value">${item.duration}</span>
+          </div>
         </div>
+        ${priceHtml}
+        ${buyHtml}
       </div>
-      ${priceHtml}
-      ${buyHtml}
+      <div class="brand-logo-container">
+        <img
+          src="${item.image}"
+          class="brand-logo"
+          loading="lazy"
+          decoding="async"
+          alt="${item.sourceLabel} logo"
+        />
+      </div>
     `;
 
     fragment.appendChild(card);

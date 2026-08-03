@@ -192,7 +192,8 @@ body {
   padding: 26px 26px 24px;
   box-shadow: var(--clay-shadow), var(--clay-inset);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: stretch;
   gap: 18px;
   transition:
     transform 0.25s ease,
@@ -206,12 +207,20 @@ body {
     var(--clay-inset);
 }
 
-/* Head: title + sold badge */
-.product-head {
+/* Left content column: title + badge, Durasi, price, buy button */
+.card-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.title-group {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 10px 12px;
 }
 
 .product-title {
@@ -226,7 +235,7 @@ body {
   font-size: 0.75rem;
   font-weight: 900;
   letter-spacing: 0.06em;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 999px;
   background: linear-gradient(145deg, #ffd9a8, #ffb36b);
   color: #7a3d0d;
@@ -235,12 +244,10 @@ body {
     var(--clay-inset);
 }
 
-/* Body: Durasi (left) + brand logo (right, vertically centered) */
+/* Body: Durasi info */
 .product-body {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
   padding: 12px 16px;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.38);
@@ -272,11 +279,11 @@ body {
 
 .brand-logo-container {
   flex: 0 0 auto;
+  align-self: stretch;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 180px;
   border-radius: var(--radius-sm);
   background: #ffffff;
   box-shadow:
@@ -285,8 +292,8 @@ body {
 }
 
 .brand-logo {
-  max-width: 84%;
-  max-height: 84%;
+  max-width: 85%;
+  max-height: 85%;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -382,6 +389,10 @@ body {
 
   .product-card {
     padding: 22px 20px 20px;
+  }
+
+  .brand-logo-container {
+    width: 100px;
   }
 
   .announcement {
