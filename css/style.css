@@ -1,3 +1,5 @@
+/** @format */
+
 :root {
   --bg: #fbf8f1;
   --ink: #101010;
@@ -18,15 +20,14 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
 }
 
 body {
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   color: var(--ink);
-  font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
+  font-family: "Work Sans", "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
   background-color: var(--bg);
   background-image:
     linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
@@ -47,8 +48,6 @@ body {
 
 .viewport {
   flex: 1 1 auto;
-  min-height: 0;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -56,8 +55,6 @@ body {
 }
 
 .page {
-  transform: scale(var(--page-scale, 1));
-  transform-origin: top center;
   width: min(1040px, 96vw);
   min-width: 0;
   margin-inline: auto;
@@ -73,6 +70,7 @@ body {
 }
 
 .logo {
+  font-family: "Fraunces", "Trebuchet MS", Georgia, serif;
   text-decoration: none;
   font-size: 1.7rem;
   font-weight: 900;
@@ -149,6 +147,7 @@ main {
 }
 
 .hero h1 {
+  font-family: "Fraunces", "Trebuchet MS", Georgia, serif;
   margin: 0.56rem 0 0;
   font-size: clamp(1.4rem, 4.5vw, 3.15rem);
   line-height: 0.95;
@@ -172,7 +171,7 @@ main {
 .product-grid {
   margin-top: clamp(0.62rem, 1.5vw, 1rem);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 0.7rem;
 }
 
@@ -180,6 +179,9 @@ main {
   padding: 0.68rem 0.72rem;
   content-visibility: auto;
   contain-intrinsic-size: 460px;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .product-head {
@@ -261,6 +263,9 @@ main {
   color: #101010;
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.54);
   cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .buy-btn:disabled {
@@ -313,12 +318,24 @@ main {
 }
 
 @media (max-width: 840px) {
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
-
   .hero {
     align-items: flex-start;
+  }
+}
+
+/* Desktop: stronger hero presence and tighter card grid */
+@media (min-width: 900px) {
+  .hero {
+    padding: clamp(1.1rem, 2.4vw, 1.9rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.1rem, 4.2vw, 3.15rem);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0.85rem;
   }
 }
 
@@ -377,5 +394,42 @@ main {
 @media (max-height: 600px) {
   .hero-subtitle {
     display: none;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Desktop refinements: hover states only for fine pointers */
+@media (hover: hover) and (pointer: fine) {
+  .logo:hover,
+  .pill:hover {
+    transform: translate(-1px, -1px);
+  }
+
+  .product-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.62);
+  }
+
+  .buy-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.54);
+  }
+
+  .buy-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.54);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
