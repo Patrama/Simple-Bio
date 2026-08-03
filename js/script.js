@@ -7,7 +7,6 @@ const products = [
     duration: "30 Hari",
     stock: 1,
     link: "page/tokopedia.html",
-    image: "img/Tokopedia.webp",
     sourceLabel: "Tokopedia",
   },
   {
@@ -16,7 +15,6 @@ const products = [
     duration: "90 Hari",
     stock: 0,
     link: "page/shopee.html",
-    image: "img/Shopee.webp",
     sourceLabel: "Shopee",
   },
 ];
@@ -64,15 +62,6 @@ function renderProducts(items) {
         </div>
         ${priceHtml}
         ${buyHtml}
-      </div>
-      <div class="brand-logo-container">
-        <img
-          src="${item.image}"
-          class="brand-logo"
-          loading="lazy"
-          decoding="async"
-          alt="${item.sourceLabel} logo"
-        />
       </div>
     `;
 

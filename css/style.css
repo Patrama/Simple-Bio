@@ -192,9 +192,10 @@ body {
   padding: 26px 26px 24px;
   box-shadow: var(--clay-shadow), var(--clay-inset);
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
+  flex-direction: column;
   gap: 18px;
+  position: relative;
+  overflow: hidden;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
@@ -214,6 +215,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  position: relative;
+  z-index: 1;
 }
 
 .title-group {
@@ -278,26 +281,26 @@ body {
 }
 
 .brand-logo-container {
-  flex: 0 0 auto;
-  align-self: stretch;
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 68%;
+  height: 92%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 180px;
-  border-radius: var(--radius-sm);
-  background: #ffffff;
-  box-shadow:
-    0 10px 18px -8px rgba(99, 66, 30, 0.35),
-    var(--clay-inset);
+  pointer-events: none;
 }
 
 .brand-logo {
-  max-width: 85%;
-  max-height: 85%;
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
-  border-radius: 6px;
+  opacity: 0.2;
 }
 
 /* Price row */
@@ -389,10 +392,18 @@ body {
 
   .product-card {
     padding: 22px 20px 20px;
+    gap: 16px;
+  }
+
+  .card-content {
+    gap: 16px;
   }
 
   .brand-logo-container {
-    width: 100px;
+    top: 8px;
+    transform: none;
+    width: 78%;
+    height: 45%;
   }
 
   .announcement {
