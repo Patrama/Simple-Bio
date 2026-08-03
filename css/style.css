@@ -1,14 +1,27 @@
 /** @format */
 
 :root {
-  --bg: #fbf8f1;
+  /* Neobrutalism core */
   --ink: #101010;
   --ink-soft: #444;
   --accent: #ff3c22;
-  --surface: #ffffff;
+  --accent-soft: #ffe9e4;
   --border: #111111;
   --radius: 14px;
   --frame-shadow: 4px 4px 0 rgba(0, 0, 0, 0.62);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.68);
+  --glass-blur: 10px;
+  --glass-saturate: 180%;
+  --glass-shine: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --accent-glass: rgba(255, 60, 34, 0.58);
+  --accent-soft-glass: rgba(255, 233, 228, 0.62);
+  --blob-1: rgba(255, 92, 60, 0.5);
+  --blob-2: rgba(255, 196, 0, 0.45);
+  --blob-3: rgba(94, 132, 255, 0.42);
+  --blob-4: rgba(0, 196, 168, 0.4);
 }
 
 * {
@@ -28,22 +41,62 @@ body {
   flex-direction: column;
   color: var(--ink);
   font-family: "Work Sans", "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
-  background-color: var(--bg);
+  /* Warm base + faint neobrutalist blueprint grid (static canvas layer) */
+  background-color: #f2ecdf;
   background-image:
     linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
+/* Color blobs behind the glass — a single fixed layer animated with
+   transform only (GPU-composited, no repaint). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(closest-side, var(--blob-1), transparent 72%),
+    radial-gradient(closest-side, var(--blob-2), transparent 72%),
+    radial-gradient(closest-side, var(--blob-3), transparent 72%),
+    radial-gradient(closest-side, var(--blob-4), transparent 72%);
+  background-size:
+    62vmax 62vmax,
+    58vmax 58vmax,
+    64vmax 64vmax,
+    56vmax 56vmax;
+  background-position:
+    -12vw -18vh,
+    72vw -14vh,
+    78vw 72vh,
+    -10vw 68vh;
+  background-repeat: no-repeat;
+  animation: blobFloat 26s ease-in-out infinite alternate;
+}
+
+@keyframes blobFloat {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3vw, 2.5vh, 0) scale(1.08);
+  }
+}
+
 .announcement {
   flex: 0 0 auto;
-  background: var(--accent);
+  background: var(--accent-glass);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   color: #0a0a0a;
   text-align: center;
   font-weight: 700;
   font-size: 0.87rem;
   padding: 0.58rem 1rem;
   border-bottom: 3px solid var(--border);
+  box-shadow: var(--glass-shine);
 }
 
 .viewport {
@@ -76,11 +129,13 @@ body {
   font-weight: 900;
   letter-spacing: 0.03em;
   color: var(--ink);
-  background: var(--surface);
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   border: 4px solid var(--border);
   border-radius: 12px;
   padding: 0.35rem 0.95rem;
-  box-shadow: var(--frame-shadow);
+  box-shadow: var(--frame-shadow), var(--glass-shine);
 }
 
 .menu {
@@ -96,10 +151,12 @@ body {
   font-weight: 900;
   font-size: 0.8rem;
   border: 4px solid var(--border);
-  background: var(--surface);
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   border-radius: 10px;
   padding: 0.38rem 0.75rem;
-  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5), var(--glass-shine);
 }
 
 .pill:hover,
@@ -116,10 +173,12 @@ main {
 }
 
 .frame {
-  background: var(--surface);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   border: 5px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--frame-shadow);
+  box-shadow: var(--frame-shadow), var(--glass-shine);
 }
 
 .hero {
@@ -151,10 +210,13 @@ main {
   font-size: 0.73rem;
   font-weight: 900;
   letter-spacing: 0.18em;
-  background: #ffe9e4;
+  background: var(--accent-soft-glass);
+  -webkit-backdrop-filter: blur(6px) saturate(160%);
+  backdrop-filter: blur(6px) saturate(160%);
   border: 3px solid var(--border);
   border-radius: 8px;
   padding: 0.25rem 0.52rem;
+  box-shadow: var(--glass-shine);
 }
 
 .hero h1 {
@@ -216,7 +278,10 @@ main {
   font-size: 0.64rem;
   font-weight: 900;
   white-space: nowrap;
-  background: #ffe9e4;
+  background: var(--accent-soft-glass);
+  -webkit-backdrop-filter: blur(6px) saturate(160%);
+  backdrop-filter: blur(6px) saturate(160%);
+  box-shadow: var(--glass-shine);
 }
 
 .meta {
@@ -442,5 +507,55 @@ main {
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+}
+
+/* Graceful fallback: browsers without backdrop-filter get solid surfaces */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .announcement,
+  .logo,
+  .pill,
+  .frame,
+  .hero-kicker,
+  .sold-badge {
+    background: #ffffff;
+  }
+
+  .announcement {
+    background: var(--accent);
+  }
+
+  .hero-kicker,
+  .sold-badge {
+    background: var(--accent-soft);
+  }
+}
+
+/* Users who prefer less transparency get solid, high-contrast surfaces */
+@media (prefers-reduced-transparency: reduce) {
+  .announcement,
+  .logo,
+  .pill,
+  .frame,
+  .hero-kicker,
+  .sold-badge {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .announcement,
+  .logo,
+  .pill,
+  .frame {
+    background: #ffffff;
+  }
+
+  .announcement {
+    background: var(--accent);
+  }
+
+  .hero-kicker,
+  .sold-badge {
+    background: var(--accent-soft);
   }
 }

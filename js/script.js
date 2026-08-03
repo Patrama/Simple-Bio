@@ -2,12 +2,12 @@
 
 const products = [
   {
-    title: "Kiro Pro+ 10M Tokens",
-    soldLabel: "7 TERJUAL",
-    token: "10M",
-    duration: "-",
-    oldPrice: 12000,
-    newPrice: 9500,
+    title: "Tokopedia",
+    soldLabel: "Plus +",
+    Status: "10M",
+    duration: "30 Hari",
+    // oldPrice: FullPrice,
+    // newPrice: 9500,
     stock: 1,
     link: "page/tokopedia.html",
     image: "img/Tokopedia-Clay-Style.webp",
@@ -55,27 +55,10 @@ function renderProducts(items) {
         <span class="sold-badge">${item.soldLabel}</span>
       </div>
 
-      <div class="meta">
-        <div class="meta-row">
-          <span class="meta-label">Token</span>
-          <span class="meta-value">${item.token}</span>
-        </div>
         <div class="meta-row">
           <span class="meta-label">Durasi</span>
           <span class="meta-value">${item.duration}</span>
         </div>
-        <div class="meta-row">
-          <span class="meta-label">Harga</span>
-          <div class="price-line">
-            <span class="price-old">${formatRupiah(item.oldPrice)}</span>
-            <span class="price-new">${formatRupiah(item.newPrice)}</span>
-          </div>
-        </div>
-        <div class="meta-row">
-          <span class="meta-label">Stok</span>
-          <span class="meta-value">${stockLabel}</span>
-        </div>
-      </div>
 
       <a href="${item.link}" class="thumb-link" aria-label="Open ${item.sourceLabel} page">
         <img src="${item.image}" width="46" height="46" loading="lazy" decoding="async" alt="${item.sourceLabel} thumbnail">
