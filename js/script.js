@@ -4,22 +4,16 @@ const products = [
   {
     title: "Tokopedia",
     soldLabel: "Plus +",
-    status: "10M",
     duration: "30 Hari",
-    // oldPrice: undefined, // no discount shown
-    newPrice: undefined, // price hidden (per prior layout)
     stock: 1,
     link: "page/tokopedia.html",
     image: "img/Tokopedia.webp",
     sourceLabel: "Tokopedia",
   },
   {
-    title: "Kiro Pro+ 20M Tokens",
-    soldLabel: "2 TERJUAL",
-    status: "20M",
-    duration: "1 Hari",
-    oldPrice: 18000,
-    newPrice: 16000,
+    title: "Shopee",
+    soldLabel: "VIP",
+    duration: "90 Hari",
     stock: 0,
     link: "page/shopee.html",
     image: "img/Shopee.webp",
@@ -45,8 +39,8 @@ function renderProducts(items) {
 
     const stockAvailable = item.stock > 0;
     const buyHtml = stockAvailable
-      ? `<a href="${item.link}" class="buy-btn">BELI SEKARANG</a>`
-      : `<button type="button" class="buy-btn" disabled aria-disabled="true">STOK HABIS</button>`;
+      ? `<a href="${item.link}" class="buy-btn">Click Me</a>`
+      : `<button type="button" class="buy-btn" disabled aria-disabled="true">Maintenance</button>`;
 
     const priceHtml = item.newPrice
       ? `
